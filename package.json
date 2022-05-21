@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/suri1021/nodemaster/issues"
   },
-  "homepage": "https://github.com/suri1021/nodemaster#readme"
+  "homepage": "https://github.com/suri1021/nodemaster#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
