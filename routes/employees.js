@@ -1,19 +1,13 @@
 const express = require('express')
-const { rest } = require('lodash')
-const app = express()
-const employees = require('./employees')
-//static data
-app.use(express.static('./methods-public'))
+const router = express.Router()
 
-//parse form data
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+let {employees} = require('./data')
 
-app.get('/api/employees', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json({success: true, data:employees})
 })
 
-app.post('/api/employees', (req,res) => {
+router.post('/', (req,res) => {
     console.log(req.body)
    const {name} = req.body  
    if(!name) {
@@ -22,16 +16,7 @@ app.post('/api/employees', (req,res) => {
    res.status(201).send({success: true, employee})
 })
 
-app.post('/login', (req,res) => {
-    const {name} = req.body
-
-    if(name) {
-        return res.status(200).send(`welcome ${name}`)
-    }
-    res.status(404).send('please provide credentials')
-})
-
-app.put('/api/employees/:id', (req,res)=> {
+router.put('/:id', (req,res)=> {
     const {id}  = req.params;
     const {name} = req.body;
     const {email} = req.body;
@@ -55,7 +40,7 @@ app.put('/api/employees/:id', (req,res)=> {
     res.status(200).json({success: true, data: newEmployee})
 })
 
-app.delete('/api/employees/:id', (req,res)=> {
+router.delete('/:id', (req,res)=> {
     const {id}  = req.params;
 
     const employee = employees.find((employee) => 
@@ -70,7 +55,4 @@ app.delete('/api/employees/:id', (req,res)=> {
     return res.status(200).json({success: true, data: delEmployee})
 })
 
-
-app.listen(3000, () => {
-    console.log('listening at 3000')
-})
+module.exports = router

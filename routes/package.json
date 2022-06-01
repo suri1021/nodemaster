@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "routes",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
-    "lodash": "^4.17.21",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.16"
+    "express": "^4.18.1"
   }
 }
